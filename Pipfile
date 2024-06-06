@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+nltk = "*"
+gensim = "*"
+scipy = "<1.13.0"
+psycopg2 = "*"
+numpy = "*"
+pandas = "*"
+
+[dev-packages]
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+
+[requires]
+python_version = "3.9"

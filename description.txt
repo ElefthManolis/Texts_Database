@@ -1,0 +1,4 @@
+Development Platform: Ubuntu Linux
+
+import nltk
+nltk.download('punkt')
