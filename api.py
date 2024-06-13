@@ -34,9 +34,7 @@ async def read_root():
                 height: 100vh;
                 margin: 0;
                 font-family: Arial, sans-serif;
-                background-image: url('https://example.com/background.jpg'); /* Replace with your image URL */
-                background-size: cover;
-                background-position: center;
+                background-color: #87CEEB;
             }
             h1 {
                 font-size: 80px;
@@ -102,8 +100,10 @@ async def read_root():
                 margin-top: 5px;
                 font-size: 14px;
             }
+            .highlight {
+                background-color: yellow; /* Highlight color for matching words */
+            }
         </style>
-        <script type="text/javascript" src="static/show_results.js"></script>
     </head>
     <body>
         <div class="container">
@@ -128,9 +128,9 @@ async def read_root():
             <div class="error-message" id="number-error"></div>
             <div class="error-message" id="distance_measure-error"></div>
             <div id="results"></div>
-        </div>
+        </div>  
+        <script src="static/show_results.js?v=1.0"></script>
     </body>
-    
     </html>
     """
     return HTMLResponse(content=html_content)

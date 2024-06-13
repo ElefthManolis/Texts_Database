@@ -48,6 +48,16 @@ async function search() {
     document.getElementById('searchButton').scrollIntoView({ behavior: 'smooth' });  
 }
 
+function highlightText(text, query) {
+    const words = query.split(' ').filter(word => word.length > 0);
+    let highlightedText = text;
+    words.forEach(word => {
+        const regex = new RegExp(`(${word})`, 'gi');
+        highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
+    });
+    return highlightedText;
+}
+
 function showResults(results, query) {
     let resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = '';
@@ -58,7 +68,7 @@ function showResults(results, query) {
             let docP = document.createElement('p');
             let boltTitle = document.createElement('b');
             boltTitle.textContent = `Document ${index + 1}`;
-            docP.textContent = `${highlightText(currentDoc, query)}`;
+            docP.innerHTML = `${highlightText(currentDoc, query)}`;
             resultsDiv.appendChild(boltTitle);
             resultsDiv.appendChild(docP);
         });
@@ -67,15 +77,4 @@ function showResults(results, query) {
         noResultsP.textContent = 'No documents found.';
         resultsDiv.appendChild(noResultsP);
     }
-}
-
-function highlightText(text, query) {
-    console.log('inside')
-    const words = query.split(' ').filter(word => word.length > 0);
-    let highlightedText = text;
-    words.forEach(word => {
-        const regex = new RegExp(`(${word})`, 'gi');
-        highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
-    });
-    return highlightedText;
 }
