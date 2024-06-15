@@ -60,6 +60,9 @@ async def read_root():
                 margin-right: 10px;
                 width: 500px; /* Increased width */
             }
+            input[type="text"].error {
+                border: 2px solid red; /* Red border for error */
+            }
             input[type="number"] {
                 padding: 10px;
                 font-size: 20px; /* Increased font size */
@@ -109,7 +112,7 @@ async def read_root():
         <div class="container">
             <h1>Search Bar</h1>
             <div class="row">
-                <input type="text" id="query" placeholder="Enter search query">
+                <input type="text" id="query" placeholder="Enter search query" required>
             </div>
             <div class="row">
                 <input type="number" id="number" placeholder="Enter the top k simlarly results" min="1">
@@ -125,11 +128,12 @@ async def read_root():
                 </select>
             </div>
             <button id="searchButton" onclick="search()">Search</button>
+             <div class="error-message" id="query-error"></div>
             <div class="error-message" id="number-error"></div>
             <div class="error-message" id="distance_measure-error"></div>
             <div id="results"></div>
         </div>  
-        <script src="static/show_results.js?v=1.0"></script>
+        <script src="static/show_results.js?v=2.0"></script>
     </body>
     </html>
     """

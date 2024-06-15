@@ -1,17 +1,28 @@
 function validateInputs() {
     let isValid = true;
+    var queryInput = document.getElementById('query');
     const numberInput = document.getElementById('number');
     const distanceMeasureSelect = document.getElementById('distance_measure');
     const numberValue = parseFloat(numberInput.value);
     const distanceMeasureValue = distanceMeasureSelect.value;
+    const queryErrorMessage = document.getElementById('query-error');
     const numberErrorMessage = document.getElementById('number-error');
     const distanceMeasureErrorMessage = document.getElementById('distance_measure-error');
 
     // Reset error states
+    queryInput.classList.remove('error');
     numberInput.classList.remove('error');
     distanceMeasureSelect.classList.remove('error');
+    queryErrorMessage.textContent = '';
     numberErrorMessage.textContent = '';
     distanceMeasureErrorMessage.textContent = '';
+
+    // Validate number input
+    if (!query.value) {
+        queryInput.classList.add('error');
+        queryErrorMessage.textContent = 'Please enter a query (keywords).';
+        isValid = false;
+    }
 
     // Validate number input
     if (isNaN(numberValue) || numberValue <= 0 || !Number.isInteger(numberValue)) {

@@ -89,9 +89,11 @@ class TextDB:
         distances = np.array(distances)
         record_ids = np.array(record_ids)
 
-        sorted_indices = np.argsort(distances)
-        distances = list(distances[sorted_indices])
-        record_ids = list(record_ids[sorted_indices])
+        ascending_order_indices = np.argsort(distances) # the np.argsort sort the in ascending order
+        descending_order_indices = ascending_order_indices[::-1] # in this line I revert the order to descending
+
+        distances = list(distances[descending_order_indices])
+        record_ids = list(record_ids[descending_order_indices])
         
         filtered_record_ids = record_ids[:K]
         documets = pd.read_csv(os.getcwd() + "/data.csv")
@@ -108,3 +110,4 @@ class TextDB:
                 content = f.read()
                 docs.append(content)
         return docs
+    
