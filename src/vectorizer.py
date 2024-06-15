@@ -75,9 +75,12 @@ def query_embedding(query):
     return vectorized_query
 
 def main():
+    # create a config object with the database credentials
     db_config = Config()
+    # create a custom db object to handle the connections and the queries to the postgre database
     postgre_db = TextDB(db_config)
     documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
+    # document to vector model to convert each document into embeddings
     embed_model = Doc2Vec(documents, vector_size=50, window=3, min_count=1, workers=4)
     doc_vectors = vectorizer(embed_model)
     postgre_db.insert_documents(doc_vectors)
