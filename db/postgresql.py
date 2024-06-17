@@ -42,7 +42,7 @@ class TextDB:
                 print("PostgreSQL connection is closed")
 
 
-
+    # create a connection with the database
     def connect(self):
         connection = psycopg2.connect(user=self.user,
                                 password=self.password,
@@ -52,7 +52,7 @@ class TextDB:
         connection.autocommit = True
         return connection
 
-
+    # fetch the documents from the database
     def fetch_documents(self, prompt, K, distance_measure):
         try:
             connection = self.connect()
@@ -81,6 +81,7 @@ class TextDB:
         for record in documents:
             record_id = record[0]
             deserialised_record = pickle.loads(record[1])
+            # compute the distance
             dist = distance.cdist(deserialised_record.reshape(1, 50), query.reshape(1, 50), distance_measure)
             distances.append(float(dist[0][0]))
             record_ids.append(record_id)
@@ -110,4 +111,3 @@ class TextDB:
                 content = f.read()
                 docs.append(content)
         return docs
-    

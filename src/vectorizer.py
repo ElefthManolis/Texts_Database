@@ -59,12 +59,12 @@ def vectorizer(model) -> Dict:
 
 
     df = pd.DataFrame(data = docs_links)
-    df.to_csv("data.csv", index=False)
+    df.to_csv("data.csv", index=False) # save the links with the actual documents
 
     # return all the vectors (embeddings) of the documents
     return vector_dict
     
-    
+# convert the user's query into embedding in order to compute the similarities
 def query_embedding(query):
     documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(common_texts)]
     embed_model = Doc2Vec(documents, vector_size=50, window=3, min_count=1, workers=4)
